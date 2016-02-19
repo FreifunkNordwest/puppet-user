@@ -1,8 +1,10 @@
 define user::create (
-  Array[String] $authorized_keys = [],
+  Array[Hash]   $authorized_keys = [],
   Array[String] $groups          = [],
   String        $shell           = '/bin/zsh',
 ) {
+
+  require user
 
   group { $title:
     ensure => present,
