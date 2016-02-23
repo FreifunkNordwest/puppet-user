@@ -25,7 +25,7 @@ define user::create (
   $authorized_keys.each | $key, $value | {
     ssh_authorized_key { $key:
       user => $title,
-      type => $value[type],
+      type => $value['type'],
       key  => $value[key],
     }
   }
