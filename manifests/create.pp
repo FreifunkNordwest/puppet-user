@@ -1,5 +1,5 @@
 define user::create (
-  Array[Hash]   $authorized_keys = [],
+  Hash          $authorized_keys = {},
   Array[String] $groups          = [],
   String        $shell           = '/bin/zsh',
 ) {
