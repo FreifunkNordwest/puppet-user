@@ -4,7 +4,7 @@ define user::create (
   String        $shell           = '/bin/zsh',
 ) {
 
-  require user
+  include user
 
   group { $title:
     ensure => present,
