@@ -1,16 +1,23 @@
 class user::config {
 
-  file_line { 'sudo_wheel_rule':
-    path  => '/etc/sudoers',
-    line  => '%wheel ALL=(ALL) ALL',
-    match => '^%wheel',
+  file {
+    default:
+      ensure => file,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0440';
+      '/etc/sudoers':
+        source => 'puppet:///modules/user/sudoers';
   }
 
-  file_line { 'useradd CREATE_HOME':
-    path  => '/etc/default/useradd',
-    line  => 'CREATE_HOME yes',
-    match => '^CREATE_HOME',
+  file {
+    default:
+      ensure => file,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644';
+      '/etc/default/useradd':
+        source => 'puppet:///modules/user/useradd';
   }
 
 }
-
