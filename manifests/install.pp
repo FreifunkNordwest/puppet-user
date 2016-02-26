@@ -4,9 +4,12 @@ class user::install {
     ensure => installed,
   }
 
+  package { 'zsh':
+    ensure => installed,
+  }
+
   group { 'wheel':
     ensure => present,
   }
 
 }
-
