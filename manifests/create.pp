@@ -17,7 +17,7 @@ define user::create (
     shell          => $shell,
     purge_ssh_keys => true,
     expiry         => absent,
-    password       => '*',
+    password       => '!',
     home           => "/home/${title}",
     managehome     => true,
   }
