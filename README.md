@@ -19,7 +19,7 @@ Manages user accounts with ssh authorized keys.
 ### Beginning with user
 
 ```puppet
-user::create { 'username':
+user::managed { 'username':
   authorized_keys => {
     'username@localmachine' => {
       type => 'ssh-rsa',
@@ -33,7 +33,7 @@ user::create { 'username':
 ## Usage
 
 ```puppet
-user::create { 'username':
+user::managed { 'username':
   authorized_keys => {
     'username@localmachine' => {
       type => 'ssh-rsa',
@@ -42,15 +42,30 @@ user::create { 'username':
   },
   groups => [ 'wheel' ],
   shell  => '/bin/zsh',
+  status => 'present',
 }
+```
+
+##hiera
+```hiera
+user::managed:
+  username:
+    status: present
+    groups:
+      - sudo
+    authorized_keys:
+      username:
+        type: ssh-rsa
+        key: someawesomekey
 ```
 
 ## Reference
 
-* define user::create
+* define user::managed
   * $authorized_keys (optional, default [])
   * $groups (optional, default [])
   * $shell (optional, default '/bin/zsh')
+  * $status (optional, default 'present', option, 'present' or 'absent' or 'role')
 
 ## Limitations
 
