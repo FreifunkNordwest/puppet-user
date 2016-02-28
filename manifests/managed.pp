@@ -1,4 +1,4 @@
-define user::create (
+define user::managed (
   Hash          $authorized_keys = {},
   Array[String] $groups          = [],
   String        $shell           = '/bin/zsh',
