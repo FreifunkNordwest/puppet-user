@@ -1,17 +1,18 @@
 define user::managed (
   Hash          $authorized_keys = {},
   Array[String] $groups          = [],
+  String        $status          = 'present',
   String        $shell           = '/bin/zsh',
 ) {
 
   include user
 
   group { $title:
-    ensure => present,
+    ensure => $status,
   }
 
   user { $title:
-    ensure         => present,
+    ensure         => $status,
     gid            => $title,
     groups         => $groups,
     shell          => $shell,
@@ -22,13 +23,14 @@ define user::managed (
     managehome     => true,
   }
 
-  $authorized_keys.each | $key, $value | {
-    ssh_authorized_key { $key:
-      user => $title,
-      type => $value['type'],
-      key  => $value[key],
+  if $status == 'present' {
+    $authorized_keys.each | $key, $value | {
+      ssh_authorized_key { $key:
+        user => $title,
+        type => $value['type'],
+        key  => $value[key],
+      }
     }
   }
-
 }
 
