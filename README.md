@@ -14,22 +14,6 @@
 
 Manages user accounts with ssh authorized keys.
 
-## Setup
-
-### Beginning with user
-
-```puppet
-user::managed { 'username':
-  authorized_keys => {
-    'username@localmachine' => {
-      type => 'ssh-rsa',
-      key  => 'someawesomekey',
-    },
-  },
-  groups => [ 'wheel' ],
-}
-```
-
 ## Usage
 
 ```puppet
@@ -46,7 +30,9 @@ user::managed { 'username':
 }
 ```
 
-##hiera
+## Hiera
+All the data used by this module is managed in hierra. If you want to allow all users to access all servers, then it is a good choice to define the data for this module in a `/etc/puppetlabs/code/environments/<ENVIRONMENT>/data/common.yaml` hierra file.
+
 ```hiera
 user::managed:
   username:
@@ -58,6 +44,16 @@ user::managed:
         type: ssh-rsa
         key: someawesomekey
 ```
+
+## Managing users
+### Adding users
+To add a new user, just add a new user line in hierra.
+
+### Modifying users
+To modify a user (i.e. add new group) just edit the line in hierra.
+
+### Deleting users
+To delete a new user, just set `status` of a user to `absent` in the hierra data.
 
 ## Reference
 
@@ -76,4 +72,3 @@ user::managed:
 
 ### How to contribute
 Fork the project, work on it and submit pull requests, please.
-
