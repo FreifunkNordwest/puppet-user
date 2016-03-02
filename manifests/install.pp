@@ -1,11 +1,12 @@
-class user::install {
+class user::install inherits user {
 
   package { 'sudo':
     ensure => installed,
   }
 
-  group { 'wheel':
+  group { $group:
     ensure => present,
+    system => true,
   }
 
 }

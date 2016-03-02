@@ -1,9 +1,9 @@
-class user::config {
+class user::config inherits user {
 
-  file_line { 'sudo_wheel_rule':
+  file_line { 'sudo_rule':
     path  => '/etc/sudoers',
-    line  => '%wheel ALL=(ALL) ALL',
-    match => '^%wheel',
+    line  => "%${group} ${sudoers}",
+    match => "^%${group}",
   }
 
   file_line { 'useradd CREATE_HOME':

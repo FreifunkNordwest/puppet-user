@@ -26,7 +26,7 @@ user::create { 'username':
       key  => 'someawesomekey',
     },
   },
-  groups => [ 'wheel' ],
+  groups => [ 'sudo' ],
 }
 ```
 
@@ -40,12 +40,16 @@ user::create { 'username':
       key  => 'someawesomekey',
     },
   },
-  groups => [ 'wheel' ],
+  groups => [ 'sudo' ],
   shell  => '/bin/zsh',
 }
 ```
 
 ## Reference
+
+* class user
+  * $group (optional, default 'sudo')
+  * $sudoers (optional, default 'ALL = NOPASSWD: ALL')
 
 * define user::create
   * $authorized_keys (optional, default [])
