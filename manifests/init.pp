@@ -1,7 +1,7 @@
 class user (
   String $group   = $user::params::group,
   String $sudoers = $user::params::sudoers,
-) inherits {
+) inherits user::params {
 
   class { 'user::install': } ->
   class { 'user::config': }
