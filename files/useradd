@@ -1,3 +1,12 @@
+#
+#
+#
+# WARNING: THIS FILE IS MANAGED BY PUPPET - MANUAL MODIFICATIONS WILL BE RESET AUTOMATICALLY
+#
+#
+#
+
+
 # Default values for useradd(8)
 #
 # The SHELL variable specifies the default login shell on your
