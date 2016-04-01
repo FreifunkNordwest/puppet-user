@@ -1,13 +1,9 @@
-class user::config {
+class user::config inherits user {
 
-  file {
-    default:
-      ensure => file,
-      owner  => 'root',
-      group  => 'root',
-      mode   => '0440';
-      '/etc/sudoers':
-        source => 'puppet:///modules/user/sudoers';
+  file_line { 'sudo_rule':
+    path  => '/etc/sudoers',
+    line  => "%${group} ${sudoers}",
+    match => "^%${group}",
   }
 
   file {
